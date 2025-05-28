@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
 	darkMode: ["class"],
@@ -54,20 +55,23 @@ export default {
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+					foreground: 'hsl(var(--sidebar-foreground))'
+				},
+        // Direct PRD color names for utility classes
+        primaryText: 'hsl(var(--foreground))', // Maps to PRD primaryText #1C1E21
+        secondaryText: 'hsl(var(--muted-foreground))', // Maps to PRD secondaryText #606770
+        accentBlue: 'hsl(var(--primary))', // Maps to PRD accentBlue #1877F2
+        accentRed: 'hsl(var(--destructive))', // Maps to PRD accentRed #F02849
+        surface: 'hsl(var(--card))' // Maps to PRD surface #FFFFFF
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+      fontFamily: {
+        sans: ['var(--font-primary)', ...defaultTheme.fontFamily.sans],
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {
@@ -92,5 +96,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;
